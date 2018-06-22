@@ -27,6 +27,29 @@ public class RemoveDups {
 			head = head.next;
 		}
 	}
+	
+	//============Follow Up===================
+	// Without using a buffer
+	
+	/*	public void removeDups(Node head) {
+		Node curr = head;
+		while(curr !=null) {
+			Node runner = curr;
+			while(runner.next !=null) {
+				if(curr.val == runner.next.val) {
+					runner.next = runner.next.next;
+				} else {
+					runner = runner.next;
+				}
+			}
+			curr = curr.next;
+		}
+		
+		while(head !=null) {
+			System.out.println(head.val+" ");
+			head = head.next;
+		}*/
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RemoveDups rd = new RemoveDups();
