@@ -1,0 +1,66 @@
+package Chapter4_TreesGraphs;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class RouteBetweenNodes {
+
+	// build an adjacency list
+	int nofVertices;
+	LinkedList<Integer>[] adj;
+
+	RouteBetweenNodes(int v){
+		nofVertices = v;
+		adj = new LinkedList[nofVertices];
+
+		for(int i =0;i<nofVertices;i++) {
+			adj[i] = new LinkedList<Integer>();
+		}
+	}
+	public void addEdge(int v, int e) {
+		adj[v].add(e);
+	}
+
+	public boolean isRoute(int v1, int v2) {
+		boolean[] visited = new boolean[nofVertices];
+		visited[v1]= true;
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		queue.add(v1);
+
+		Iterator<Integer> list;
+		while(!queue.isEmpty()) {
+			int temp = queue.poll();
+			list = adj[temp].listIterator();
+
+
+			while(list.hasNext()) {
+				int n = list.next();
+
+				if(n == v2) {
+					return true;
+				} 
+				if(!visited[n]) {
+					visited[n]=true;
+					queue.add(n);
+				}
+			}
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		RouteBetweenNodes rbn = new RouteBetweenNodes(4);
+		rbn.addEdge(0, 1);
+		rbn.addEdge(0, 2);
+		rbn.addEdge(1, 2);
+		rbn.addEdge(2, 0);
+		rbn.addEdge(2, 3);
+		rbn.addEdge(3, 3);
+		boolean res = rbn.isRoute(3, 1);
+		System.out.println(res);
+
+	}
+
+}
